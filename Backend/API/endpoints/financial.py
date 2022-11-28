@@ -1,16 +1,32 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from Entities.Operations import Operations
 from Instances.localStorageOperationsRepo import localOperationsRepository
+from Instances.dbOperations import DatabaseOperationsRepository
 
 router = APIRouter()
 
-@router.get("/")
+localStorage =  localOperationsRepository()
+@router.get("/localData")
 def test():
-    local = localOperationsRepository()
-    create1 = Operations("debt", 100.20, "Conta de Luz")
-    create2 = Operations("debt", 120.20, "Conta de Agua")
-    create3 = Operations("credit", 150.20, "Venda")
-    local.add(create1)
-    local.add(create2)
-    local.add(create3)
-    return {local}
+    requestedData = localStorage.selectAll()
+    return requestedData
+    
+
+@router.get("/remoteDate")
+def remoteData():
+    repo = DatabaseOperationsRepository()
+    return repo.selectAll()
+
+@router.post("/registrarOperacao")
+async def registrarOperacao(request: Request):
+    data = await request.json()
+    print(data)
+    localStorage.add(data)
+
+@router.post("/insertOperation")
+async def insertOperation(request: Request):
+    data = await request.json()
+    print(data)
+    return DatabaseOperationsRepository().add(data)
+
+

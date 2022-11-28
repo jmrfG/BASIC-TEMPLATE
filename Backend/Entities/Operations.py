@@ -1,9 +1,34 @@
 from datetime import datetime
 
 class Operations:
-    def __init__(self, type, value, description) -> object:
-        self.id = type+str(value)
-        self.type = type
-        self.value = value
+    def __init__(self, tipoDeOperacao: str, 
+                valorTotal: float, valorPago: float, 
+                description: str, dataDeReferencia: datetime, dataDePagamento: datetime) -> object:
+        self.id = tipoDeOperacao+str(valorPago)+str(dataDePagamento)
+        self.tipoDeOperacao = tipoDeOperacao
+        self.valorTotal = valorTotal 
+        self.valorPago = valorPago
         self.description = description
-        self.creationDate = datetime.now().isoformat(sep="T", timespec='auto')
+        self.dataDeReferencia = dataDeReferencia
+        self.dataDePagamento = dataDePagamento
+
+    def getId(self):
+        return self.id
+
+    def getTipoOperacao(self):
+        return self.tipoDeOperacao
+
+    def getValorTotal(self):
+        return self.valorTotal
+
+    def getValorPago(self):
+        return self.valorPago
+
+    def getDescricao(self):
+        return self.description
+
+    def getDataReferencia(self):
+        return self.dataDeReferencia
+
+    def getDataPagamento(self):
+        return self.dataDePagamento

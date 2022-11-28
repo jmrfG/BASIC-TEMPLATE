@@ -8,13 +8,13 @@ export default function MainPageTemplate() {
 
     const columns = [
         {
-            field: "id",
+            field: "operationId",
             headerName: "Id",
             flex: 1,
             hide: true,
         },
         {
-            field: "type",
+            field: "tipoOperacao",
             headerName: "Tipo",
             renderCell: (e) => {
                 if (e.value === "credit") {
@@ -26,27 +26,47 @@ export default function MainPageTemplate() {
             flex: 1,
         },
         {
-            field: "value",
-            headerName: "Valor",
+            field: "valorTotal",
+            headerName: "Despesa/Crédito Total",
             flex: 1,
         },
         {
-            field: "description",
+            field: "valorPago",
+            headerName: "Valor Pago/Recebido",
+            flex: 1,
+        },
+        {
+            field: "descricao",
             headerName: "Descrição",
+            flex: 1,
+        },
+        {
+            field: "dataReferencia",
+            headerName: "Data de Referencia",
+            flex: 1,
+        },
+        {
+            field: "dataPagamento",
+            headerName: "Data de Pagamento",
             flex: 1,
         },
     ]
 
-    React.useEffect(() => {
-        request.get('/finance/').then((res) => {
-            let data = res.data;
-            //console.log(data[0].opLis);
-            let json = data[0].opLis
-            setRows(json);
-        }).catch(err => {
+    const requestData = React.useCallback(async () => {
+        try {
+            let res = await request.get('/finance/localData')
+            let data = res.data
+            console.log(data)
+            setRows(data)
+        }
+        catch (err) {
             console.log(err)
-        })
+        }
     }, [])
+
+    React.useEffect(() => {
+        requestData()
+    }, [requestData])
 
     return (
         <Box sx={{
@@ -61,8 +81,9 @@ export default function MainPageTemplate() {
             <DataGrid
                 columns={columns}
                 rows={rows}
+                getRowId={row => row.operationId}
                 getRowClassName={(params) => {
-                    if (params.row.type === "credit") {
+                    if (params.row.tipoOperacao === "credit") {
                         return 'credit'
                     } else {
                         return 'debt'

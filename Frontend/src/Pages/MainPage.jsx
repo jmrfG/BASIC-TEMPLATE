@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import MainPageTemplate from '../Components/MainPageTemplate'
-
+import RegistrarOperacao from "../Components/FormPageTemplate";
 export default function MainPage() {
     const [tab, setTab] = React.useState("1")
     const changeTab = (event, newValue) => {
@@ -28,7 +28,7 @@ export default function MainPage() {
                     </TabList>
                 </Box>
                 <TabPanel value="1">
-                    <MainPageTemplate></MainPageTemplate>
+                    <RegistrarOperacao></RegistrarOperacao>
                 </TabPanel>
                 <TabPanel value="2">
                     <MainPageTemplate></MainPageTemplate>
