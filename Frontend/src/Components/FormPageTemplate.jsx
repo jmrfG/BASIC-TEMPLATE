@@ -20,8 +20,8 @@ const defaultValues = {
 export default function RegistrarOperacao() {
     const [name, setName] = React.useState("")
     const [tipoOperacao, setTipoOperacao] = React.useState("")
-    const [valorTotal, setValorTotal] = React.useState(0)
-    const [valorOperacao, setValorOperacao] = React.useState(0)
+    const [valorTotal, setValorTotal] = React.useState(0.00)
+    const [valorOperacao, setValorOperacao] = React.useState(0.00)
     const [dataRef, setDataRef] = React.useState(new Date())
     const [dataPag, setDataPag] = React.useState(new Date())
     const methods = useForm({ defaultValues: defaultValues })
@@ -39,8 +39,8 @@ export default function RegistrarOperacao() {
             request.post('/finance/registrarOperacao', data)
             setName("")
             setTipoOperacao("")
-            setValorOperacao(0)
-            setValorTotal(0)
+            setValorOperacao(0.00)
+            setValorTotal(0.00)
             setDataRef(new Date())
             setDataPag(new Date())
         } catch (err) {

@@ -14,7 +14,7 @@ export default function MainPageTemplate() {
             hide: true,
         },
         {
-            field: "tipoOperacao",
+            field: "tipoDeOperacao",
             headerName: "Tipo",
             renderCell: (e) => {
                 if (e.value === "credit") {
@@ -36,17 +36,17 @@ export default function MainPageTemplate() {
             flex: 1,
         },
         {
-            field: "descricao",
+            field: "description",
             headerName: "Descrição",
             flex: 1,
         },
         {
-            field: "dataReferencia",
+            field: "dataDeReferencia",
             headerName: "Data de Referencia",
             flex: 1,
         },
         {
-            field: "dataPagamento",
+            field: "dataDePagamento",
             headerName: "Data de Pagamento",
             flex: 1,
         },

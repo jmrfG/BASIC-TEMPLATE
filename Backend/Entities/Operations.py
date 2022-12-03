@@ -4,7 +4,7 @@ class Operations:
     def __init__(self, tipoDeOperacao: str, 
                 valorTotal: float, valorPago: float, 
                 description: str, dataDeReferencia: datetime, dataDePagamento: datetime) -> object:
-        self.id = tipoDeOperacao+str(valorPago)+str(dataDePagamento)
+        self.operationId = tipoDeOperacao+str(valorPago)+str(dataDePagamento)
         self.tipoDeOperacao = tipoDeOperacao
         self.valorTotal = valorTotal 
         self.valorPago = valorPago
@@ -13,7 +13,7 @@ class Operations:
         self.dataDePagamento = dataDePagamento
 
     def getId(self):
-        return self.id
+        return self.operationId
 
     def getTipoOperacao(self):
         return self.tipoDeOperacao

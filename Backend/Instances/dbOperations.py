@@ -1,5 +1,5 @@
 from useCases.ports.operionsrepository import OperationsRepository
-from dbconfig import DATABASE
+from config import DATABASE
 from Entities.Operations import Operations
 import psycopg2
 
@@ -47,12 +47,12 @@ class DatabaseOperationsRepository(OperationsRepository):
         for d in data:
             payload = {
                 'operationId': d[0],
-                'tipoOperacao': d[1],
+                'tipoDeOperacao': d[1],
                 'valorTotal': d[2],
                 'valorPago': d[3],
-                'descricao': d[4],
-                'dataReferencia': d[5],
-                'dataPagamento': d[6]
+                'description': d[4],
+                'dataDeReferencia': d[5],
+                'dataDePagamento': d[6]
             }
             pseudoJSON.append(payload)
         self.con.close()
