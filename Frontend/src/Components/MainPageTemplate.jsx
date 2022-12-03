@@ -83,7 +83,7 @@ export default function MainPageTemplate() {
                 rows={rows}
                 getRowId={row => row.operationId}
                 getRowClassName={(params) => {
-                    if (params.row.tipoOperacao === "credit") {
+                    if (params.row.tipoDeOperacao === "credit") {
                         return 'credit'
                     } else {
                         return 'debt'
